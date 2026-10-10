@@ -1,0 +1,35 @@
+{
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (XeLaTeX)",
+      "tools": ["latexmk-xelatex"]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "first",
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk-xelatex",
+      "command": "latexmk",
+      "args": [
+        "-xelatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+  "latex-workshop.latex.clean.method": "glob",
+  "latex-workshop.latex.clean.subfolder.enabled": true,
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux", "*.bbl", "*.blg",
+    "*.log", "*.fls", "*.fdb_latexmk",
+    "*.toc", "*.lof", "*.lot", "*.out",
+    "*.acn", "*.acr", "*.alg",
+    "*.glo", "*.gls", "*.glg", "*.ist",
+    "*.nlo", "*.nls", "*.ilg",
+    "*.idx", "*.ind", "*.thm", "*.xdv"
+  ]
+}

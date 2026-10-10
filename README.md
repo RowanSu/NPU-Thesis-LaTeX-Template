@@ -1,49 +1,82 @@
 # NPU-Thesis-LaTeX-Template
 
-🎓 西北工业大学硕博士学位论文LaTeX模板（支持学术学位与专业学位），可**直接在Overleaf平台上运行**，无需本地部署，开箱即用！
+西北工业大学硕士、博士学位论文LaTeX模板，支持学术学位、专业学位及盲评版本。
 
----
+本项目面向Overleaf与本地环境进行了完整适配：项目内已包含模板、字体和编译配置，导入后即可编译，无需手动安装额外宏包、配置字体路径或切换编译器。**Overleaf免费版即可完成全文编译。**
 
-## ✨ 项目特色
+## ✨ 主要特性
 
-- ✅ 支持硕士/博士论文（学术学位&专业学位）
-- ✅ 兼容Overleaf在线编辑平台，**无需本地安装TeX环境**
-- ✅ 模板结构清晰，排版美观，方便上手
-- ✅ 中文支持完善，符合西工大论文排版规范
+- 支持硕士与博士学位论文。
+- 支持学术学位与专业学位。
+- 支持正常版本与盲评版本。
+- 支持中英文封面、摘要、目录、图表目录、术语表、符号表、参考文献和附录。
+- 同时适配Overleaf与本地TeX Live环境。
+- 内置XeLaTeX、参考文献及辅助文件清理配置。
+- 随项目提供所需字体，避免不同设备造成排版差异。
 
----
+## 🚀 快速开始
 
-## 🚀 快速开始（Overleaf 使用方法）
+### ☁️ Overleaf
 
-1. 点击链接：[Overleaf在线打开](https://www.overleaf.com/)
-2. 注册或登录Overleaf账号
-3. 将该仓库文件下载上传Overleaf即可使用
-4. 修改`yanputhesis-sample.tex`内容，撰写你的论文！
-5. 需要将编译器更换为`XeLaTeX`运行
+- 下载本项目的ZIP压缩包。
+- 在[Overleaf](https://www.overleaf.com/)中选择**New Project→Upload Project**。
+- 上传压缩包并打开项目。
+- 点击**Recompile**。
 
----
+项目已内置XeLaTeX编译配置，无需调整Overleaf的编译器或其他项目选项。普通免费账户即可使用。
 
-## 📎 致谢与引用
+### 💻 本地环境
 
-本项目基于以下开源模板进行修改和扩展：
+本地使用前仅需安装较新的TeX Live，以及VS Code的LaTeX Workshop扩展。打开项目文件夹后，编辑`nputhesis-sample.tex`，按`Ctrl+Alt+B`即可编译。
 
-> Shen, S., Wang, Z., Zhang, J., & Zhang, W. (2019). Yet Another LaTeX Template for NPU Thesis. *GitHub repository*. https://doi.org/10.5281/zenodo.4159248  
-> GitHub 链接：https://github.com/NWPUMetaphysicsOffice/Yet-Another-LaTeX-Template-for-NPU-Thesis
+仓库内的`.vscode/settings.json`已配置XeLaTeX编译流程与辅助文件自动清理，无需额外修改VS Code设置。
 
-本人主要在其基础上进行了适配优化，使模板能够直接运行于Overleaf平台，提升了可用性与可移植性。
+## ⚙️ 论文版本设置
 
----
+在`nputhesis-sample.tex`顶部修改文档类参数：
 
-## ⚠️ 字体版权声明
+```latex
+\documentclass[degree=master, academic=false, blindreview=false, adobe=false]{nputhesis}
+```
 
-本模板中可能引用了部分系统字体（如宋体、仿宋、黑体等）用于展示效果，这些字体版权归原版权所有者所有。  
-请用户确保其个人或机构拥有合法使用这些字体的权利，**因字体使用产生的任何侵权责任由用户自行承担**，模板开发者不承担任何法律责任。
+参数说明：
 
-如需发布或正式印刷，建议使用**免费开源字体**替代，或根据指导更换为学校推荐字体。
+| 参数          | 可选值         | 含义              |
+| ------------- | -------------- | ----------------- |
+| `degree`      | `master`/`phd` | 硕士/博士         |
+| `academic`    | `true`/`false` | 学术学位/专业学位 |
+| `blindreview` | `true`/`false` | 盲评版/正常版     |
 
----
+## 📁 项目结构
 
+```text
+├── nputhesis-sample.tex    # 论文主文件
+├── nputhesis.cls           # 文档类与版式定义
+├── reference.bib           # 参考文献数据库
+├── abst/                   # 中英文摘要
+├── chapters/               # 正文、附录及后置内容
+├── figures/                # 图片资源
+└── fonts/                  # 模板字体
+```
 
-## 📬 联系我
+## 📚 致谢与引用
 
-如果你在使用过程中有任何问题，欢迎提Issue，或通过Email留言交流。
+本项目基于以下开源模板修改和扩展：
+
+> Shen, S., Wang, Z., Zhang, J., & Zhang, W. (2019). _Yet Another LaTeX Template for NPU Thesis_. DOI: [10.5281/zenodo.4159248](https://doi.org/10.5281/zenodo.4159248). Repository: [NWPUMetaphysicsOffice/Yet-Another-LaTeX-Template-for-NPU-Thesis](https://github.com/NWPUMetaphysicsOffice/Yet-Another-LaTeX-Template-for-NPU-Thesis).
+
+当前版本进一步调整了模板结构、字体加载和编译配置，以提高Overleaf与本地环境之间的一致性。
+
+此外，还有其他LaTeX模板可以使用：
+
+- [LaTeX-Template-For-NPU-Thesis](https://github.com/polossk/LaTeX-Template-For-NPU-Thesis)
+- [LaTeX-NewTemplate-For-NPU-undergraduate-Thesis](https://github.com/jialinlvcn/LaTeX-NewTemplate-For-NPU-undergraduate-Thesis)
+- [NWPU-Thesis-Template](https://github.com/lihanshu/NWPU-Thesis-Template)
+
+## 🔤 字体说明
+
+项目内字体仅用于保证论文排版效果及跨平台一致性，相关字体版权归原权利人所有。使用者在公开发布、商业使用或正式印刷前，应自行确认相应字体的授权范围。
+
+## 📮 联系方式
+
+如在使用过程中遇到问题，欢迎提交 Issue 或通过邮件联系：`suws0616@gmail.com`。

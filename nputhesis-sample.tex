@@ -1,0 +1,85 @@
+% -- 论文配置 --
+% degree：master/phd；academic：true为学术学位，false为专业学位。
+% blindreview：是否启用盲评；当前为硕士学术学位、非盲评版本。
+\documentclass[degree=master, blindreview=false, adobe=false, academic=true]{nputhesis}
+
+% -- 扩展宏包 --
+\usepackage{blindtext} %
+\usepackage{metalogo} %
+\usepackage{siunitx} %
+\usepackage{amsmath} %
+\usepackage[acronym]{glossaries} %
+\setlength{\headheight}{25pt}
+
+% -- 缩略语 --
+\input{chapters/glossary}
+\makeglossaries
+
+% -- 论文信息 --
+% 双语字段按中文、英文顺序填写；标题可用\\手动换行。
+% 姓名使用\blindreview包裹，以便在盲评模式下隐藏。
+\title{基于 LaTeX 排版的 \\ 西北工业大学论文模板}{ %
+    A LaTeX Thesis Template for \\ Northwestern Polytechnical University
+} %
+\author{\blindreview{李华}}{\blindreview{Hua Li}} %
+\date{2026年6月}{June 2026} %
+\school{计算机学院}{School of Computer Science} %
+\major{计算机科学与技术}{ Computer Science and Technology} %
+\advisor{\blindreview{李华}}{\blindreview{Hua Li}} %
+\advisorAcademicRank{教授}{Professor} %
+\studentnumber{2024001234} %
+
+\begin{document}
+% -- 前置页 --
+\frontmatter %
+\maketitle %
+
+% 评阅人与答辩委员会
+\makeCommitteePage{ %
+    \reviewers{\fullBlindReview{5}} %
+    \committee{20XX年X月X日}{
+        \defenseChair{XXX}{教授}{西北工业大学}
+        \committeeMember{XXX}{教授}{西北工业大学}
+        \committeeMember{XXX}{教授}{西北工业大学}
+        \committeeMember{XXX}{教授}{西北工业大学}
+        \committeeMember{XXX}{教授}{西北工业大学}
+        \committeeMember{XXX}{教授}{西北工业大学}
+        \defenseSecretary{XXX}{教授}{西北工业大学}
+    }
+}
+
+\include{abst/abstc}
+\include{abst/abste}
+
+\tableofcontents %
+% 以下清单按论文需要保留。
+\phantomsection\addcontentsline{toc}{chapter}{缩写表} %
+\printglossary[type=\acronymtype,title=缩写表] %
+\printglossary[title=术语表] %
+\listoffigures %
+\listoftables %
+\printnomenclature %
+
+% -- 正文 --
+\mainmatter
+\sDefault
+\include{chapters/chap01}
+\include{chapters/chap02}
+
+% -- 参考文献与附录 --
+\bibliographystyle{nputhesis-noslash} %
+\bibliography{reference} %
+
+
+\appendix
+\include{chapters/appendix}
+\include{chapters/appendix1}
+
+
+% -- 后置页 --
+\backmatter %
+\include{chapters/acknowledgements} %
+\include{chapters/accomplishments} %
+\makestatement %
+
+\end{document}
