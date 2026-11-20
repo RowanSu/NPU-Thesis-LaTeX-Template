@@ -9,7 +9,6 @@
 \usepackage{siunitx} %
 \usepackage{amsmath} %
 \usepackage[acronym]{glossaries} %
-\setlength{\headheight}{25pt}
 
 % -- 缩略语 --
 \input{chapters/glossary}
@@ -22,12 +21,15 @@
     A LaTeX Thesis Template for \\ Northwestern Polytechnical University
 } %
 \author{\blindreview{李华}}{\blindreview{Hua Li}} %
-\date{2026年6月}{June 2026} %
+\date{2027年3月}{March 2027} %
 \school{计算机学院}{School of Computer Science} %
 \major{计算机科学与技术}{ Computer Science and Technology} %
 \advisor{\blindreview{李华}}{\blindreview{Hua Li}} %
 \advisorAcademicRank{教授}{Professor} %
 \studentnumber{2024001234} %
+\classification{O242} % 《中国图书分类法》中查阅，精确到二级，示例：G250.7。
+\secrecy{公开} % 以学校保密处确认的密级为准，非涉密论文，填写“公开”。
+
 
 \begin{document}
 % -- 前置页 --
@@ -65,9 +67,10 @@
 \sDefault
 \include{chapters/chap01}
 \include{chapters/chap02}
+\include{chapters/conclusion}
 
 % -- 参考文献与附录 --
-\bibliographystyle{nputhesis-noslash} %
+\bibliographystyle{nputhesis} %
 \bibliography{reference} %
 
 

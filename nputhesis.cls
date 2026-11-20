@@ -5,7 +5,7 @@
 %% LaTeX Project Public License, version 1.3c or any later version.
 %% https://www.latex-project.org/lppl.txt
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
-\ProvidesClass{nputhesis}[2026/10/10 v2 NPU-Thesis-LaTeX-Template]
+\ProvidesClass{nputhesis}[2026/11/20 v2.1 NPU-Thesis-LaTeX-Template]
 % -- 文档选项 --
 \RequirePackage{xkeyval} %
 \newif\if@npu@lang@chs %
@@ -32,7 +32,7 @@
 \ExecuteOptionsX{blindreview=false} %
 \ProcessOptionsX \relax %
 \let\@unusedoptionlist\@empty
-\LoadClass[11pt, a4paper, openany, twoside]{book} %
+\LoadClass[11pt, a4paper, openright, twoside]{book} % 正文各部分从奇数页开始
 \RequirePackage{etoolbox} %
 \RequirePackage{amssymb} %
 % -- 盲评处理 --
@@ -52,6 +52,8 @@
 \geometry{a4paper, %
     left=2.5cm, right=2.5cm, top=2.54cm, bottom=2.54cm, %
     headheight=0.53cm, headsep=0.51cm, footskip=0.79cm} %
+% 保持 geometry 算出的正文上边距，同时给“文武线”页眉留足高度。
+\setlength{\headheight}{25pt} % 页眉文字顶端在样例 PDF 中距纸张上边约 15 mm
 \RequirePackage[ %
     unicode=true, %
     colorlinks=false, %
@@ -71,15 +73,18 @@
 \newcommand{\sErhao}{\fontsize{22pt}{28pt}\selectfont} % 二号，1.25 倍
 \newcommand{\sXiaoer}{\fontsize{18pt}{18pt}\selectfont} % 小二，单倍
 \newcommand{\sSanhao}{\fontsize{16pt}{24pt}\selectfont} % 三号，1.5 倍
+\newcommand{\sSanhaoFixed}{\fontsize{16bp}{20bp}\selectfont} % 三号，固定行距 20 磅
 \newcommand{\sXiaosan}{\fontsize{15pt}{22pt}\selectfont} % 小三，1.5 倍
 \newcommand{\sSihao}{\fontsize{14pt}{21pt}\selectfont} % 四号，1.5 倍
+\newcommand{\sSihaoFixed}{\fontsize{14bp}{20bp}\selectfont} % 四号，固定行距 20 磅
 \newcommand{\sHgXiaosi}{\fontsize{13pt}{19pt}\selectfont} % 半小四，1.5 倍
 \newcommand{\sLgXiaosi}{\fontsize{12.5pt}{13pt}\selectfont} % 半小四，约 1 倍
 \newcommand{\sXiaosi}{\fontsize{12pt}{14.4pt}\selectfont} % 小四，1.2 倍
+\newcommand{\sXiaosiFixed}{\fontsize{12bp}{20bp}\selectfont} % 小四，固定行距 20 磅
 \newcommand{\sLargeWuhao}{\fontsize{11pt}{11pt}\selectfont} % 大五，单倍
 \newcommand{\sWuhao}{\fontsize{10.5pt}{10.5pt}\selectfont} % 五号，单倍
 \newcommand{\sXiaowu}{\fontsize{9pt}{9pt}\selectfont} % 小五，单倍
-\newcommand{\sDefault}{\fontsize{12pt}{20pt}\selectfont} % 小四，1.67 倍
+\newcommand{\sDefault}{\fontsize{12bp}{20bp}\selectfont} % 小四，固定行距 20 磅
 % 字体：中文字体从 fonts/ 加载；西文字体使用系统 Times New Roman。
 \newcommand\defaultSog{simsun.ttc} %
 \newcommand\defaultHei{simhei.ttf} %
@@ -125,18 +130,18 @@
 \RequirePackage{titletoc} %
 \setcounter{secnumdepth}{3} %
 \titleformat{\chapter}[hang]%
-  {\normalfont\sSanhao\filcenter\fHei}%
-  {\sffamily\fHei\sSanhao{第\chapnum 章}}%
+  {\normalfont\sSanhaoFixed\filcenter\fHei}%
+  {\sffamily\fHei\sSanhaoFixed{第\chapnum 章}}%
   {20pt}%
-  {\sSanhao}
+  {\sSanhaoFixed}[\vspace{15.6bp}] % 标题段后 0；另留一行（指南样例网格行距 15.6 磅）
 \titleformat{\section}[hang]%
-  {\fHei\sSihao}%
-  {\sffamily\fHei\sSihao\textrm{\thesection}}%
+  {\fHei\sSihaoFixed}%
+  {\sffamily\fHei\sSihaoFixed\textrm{\thesection}}%
   {0.5em}%
   {}
 \titleformat{\subsection}[hang]%
-  {\fHei\sHgXiaosi}%
-  {\sffamily\fHei\sHgXiaosi\textrm{\thesubsection}}%
+  {\normalfont\fHei\sXiaosiFixed}%
+  {\fHei\sXiaosiFixed\textrm{\thesubsection}}%
   {0.5em}%
   {}
 \titleformat{\subsubsection}[hang]%
@@ -144,9 +149,9 @@
   {\textrm{(\arabic{subsubsection})}}%
   {0.5em}%
   {}
-\titlespacing{\chapter}{0pt}{-2pt}{14pt} %
-\titlespacing{\section}{0pt}{7pt}{0em} %
-\titlespacing{\subsection}{0pt}{6.5pt}{0em} %
+\titlespacing{\chapter}{0pt}{25.6bp}{0pt} % 标题前一空行 15.6bp 加段前半行 10bp；段后零行
+\titlespacing{\section}{0pt}{10bp}{0pt} % 段前半行，段后零行
+\titlespacing{\subsection}{0pt}{10bp}{0pt} % 段前半行，段后零行
 \titlespacing{\subsubsection}{0pt}{0.25em}{0pt} %
 \titlespacing{\paragraph}{0pt}{0.25em}{0pt} %
 \dottedcontents{section}[1.16cm]{}{1.8em}{5pt} %
@@ -155,18 +160,16 @@
 \newcommand{\nwpu@chs@chaptercname}[1]{第 #1 章} %
 \newcommand{\nwpu@eng@chaptercname}[1]{Chapter #1} %
 \if@npu@lang@chs %
-    \titlecontents{chapter}[0pt]{\fSong\sLgXiaosi\vspace{ %
-            0.5em}}{\contentsmargin{0pt}\fSong\makebox[0pt %
+    \titlecontents{chapter}[0pt]{\fSong\sXiaosiFixed}{\contentsmargin{0pt}\fSong\makebox[0pt %
         ][l]{\nwpu@chs@chaptercname{\thecontentslabel}}\hspace{%
             3.5em}}{\contentsmargin{0pt}\fSong}{\titlerule*[%
             .5pc]{.}\contentspage}[\vspace{0em}] %
 \else %
     \newlength{\contents@titlewidth} %
     \newlength{\contents@appendixwidth} %
-    \settowidth{\contents@titlewidth}{\sLgXiaosi Chapter 000}%
-    \settowidth{\contents@appendixwidth}{\sLgXiaosi Appendix M00}
-    \titlecontents{chapter}[0pt]{\fSong\sLgXiaosi\vspace{ %
-            0.5em}}{\contentsmargin{0pt}\fSong\makebox[0pt %
+    \settowidth{\contents@titlewidth}{\sXiaosiFixed Chapter 000}%
+    \settowidth{\contents@appendixwidth}{\sXiaosiFixed Appendix M00}
+    \titlecontents{chapter}[0pt]{\fSong\sXiaosiFixed}{\contentsmargin{0pt}\fSong\makebox[0pt %
         ][l]{\nwpu@eng@chaptercname{\thecontentslabel}}\hspace{%
             \contents@titlewidth}}{\contentsmargin{0pt}\fSong}{
         \titlerule*[.5pc]{.}\contentspage}[\vspace{0em}] %
@@ -193,7 +196,7 @@
 \fi %
 \pagestyle{fancyplain} %
 \fancyhf{} %
-\fancyfoot[C, C]{\sWuhao{\thepage}} %
+\fancyfoot[C, C]{{\rmfamily\fontsize{9bp}{9bp}\selectfont\thepage}} % Times New Roman，小五号
 \fancyhead{} %
 \fancyhead[COH]{\sXiaowu{\leftmark}} %
 \if@npu@lang@chs %
@@ -403,7 +406,7 @@
 
 \if@npu@lang@chs %
     \newcommand{\nwpu@page@ack}{\texorpdfstring{致{\quad}谢}{致谢}}
-    \newcommand{\nwpu@page@acp}{在学期间发表的学术成果和参加%
+    \newcommand{\nwpu@page@acp}{在学期间取得的学术成果和参加%
         科研情况} %
 \else %
     \newcommand{\nwpu@page@ack}{Acknowledgements} %
@@ -438,6 +441,8 @@
 \newcommand{\nwpu@eng@advisorAcademicRank}{\chs@space} %
 \newcommand{\nwpu@eng@funding}{\chs@space} %
 \newcommand{\nwpu@uid}{2000123456} %
+\newcommand{\nwpu@classification}{} % 分类号由作者填写
+\newcommand{\nwpu@secrecy}{公开} % 非涉密论文默认公开
 \newcommand{\nwpu@funding}{\chs@space} %
 % 双语信息接口：第一个参数为中文，第二个参数为英文。
 \renewcommand{\title}[2]{ %
@@ -473,6 +478,8 @@
     \renewcommand{\nwpu@eng@funding}{#2} %
 } %
 \newcommand{\studentnumber}[1]{\renewcommand{\nwpu@uid}{#1}}% 设置学号
+\newcommand{\classification}[1]{\renewcommand{\nwpu@classification}{#1}} % 分类号
+\newcommand{\secrecy}[1]{\renewcommand{\nwpu@secrecy}{#1}} % 密级
 % -- 封皮页 --
 \newcommand{\make@nwpu@coverpage}{ %
     \thispagestyle{empty} %
@@ -490,8 +497,8 @@
                 \renewcommand\arraystretch{1.2} %
                 \begin{tabular}{|c|c|}\hline %
                     {学 \hfill 校 \hfill 代 \hfill 码} & 10699     \\ \hline
-                    {分   \hfill    类    \hfill   号} & O242      \\ \hline
-                    {密           \hfill           级} & 公开      \\ \hline
+                    {分   \hfill    类    \hfill   号} & \nwpu@classification \\ \hline
+                    {密           \hfill           级} & \nwpu@secrecy \\ \hline
                     {学           \hfill           号} & \nwpu@uid \\ \hline
                 \end{tabular} %
             \end{minipage} \par %
@@ -678,7 +685,7 @@
 }{\vfill\sWuhao\noindent\nwpu@chs@funding\par\cleardoublepage}
 \newenvironment{keywords}{ %
     \vspace{1\baselineskip} \par %
-    \noindent \textbf{关键词：}}{} %
+    \noindent {\fHei\sXiaosiFixed 关键词：}}{} %
 % -- 英文摘要及关键词 --
 \newenvironment{engabstract}{ %
     \newcommand{\ensep}{\!; } %
@@ -692,7 +699,7 @@
 % -- 目录页 --
 \let\old@toc\tableofcontents %
 \renewcommand{\tableofcontents}{ %
-    \sDefault\phantomsection %
+    \sXiaosiFixed\phantomsection %
     \bookmark[dest=\@currentHref, level=0]{\contentsname}
     \old@toc \cleardoublepage %
 } %
@@ -760,20 +767,20 @@
     \renewcommand{\nwpu@eng@chaptercname}{\nwpu@eng@appendixname}
     \if@npu@lang@chs %
         \renewcommand{\appendixname}{附录} %
-        \titlecontents{chapter}[0pt]{\fSong\sLgXiaosi\vspace{0.5em}}{%
+        \titlecontents{chapter}[0pt]{\fSong\sXiaosiFixed}{%
             \contentsmargin{0pt}\fSong\makebox[0pt][l]{%
                 \nwpu@chs@appendixname{\thecontentslabel}}\hspace{3.5em}}{%
             \contentsmargin{0pt}\fSong}{\titlerule*[.5pc]{.}%
             \contentspage}[\vspace{0em}] %
     \else %
-        \titlecontents{chapter}[0pt]{\fSong\sLgXiaosi\vspace{0.5em}}{%
+        \titlecontents{chapter}[0pt]{\fSong\sXiaosiFixed}{%
             \contentsmargin{0pt}\fSong\makebox[0pt][l]{%
                 \nwpu@eng@appendixname{\thecontentslabel}}\hspace{%
                 \contents@appendixwidth}}{\contentsmargin{0pt}\fSong}{%
             \titlerule*[.5pc]{.}\contentspage}[\vspace{0em}]%
     \fi %
-    \titleformat{\chapter}[hang]{\normalfont\sSanhao\filcenter\sffamily\fHei}{%
-        \sffamily\fHei\sSanhao{\appendixname}\rmfamily\sSanhao\bfseries\thechapter}{20pt}{\sSanhao}
+    \titleformat{\chapter}[hang]{\normalfont\sSanhaoFixed\filcenter\sffamily\fHei}{%
+        \sffamily\fHei\sSanhaoFixed{\appendixname}\rmfamily\sSanhaoFixed\bfseries\thechapter}{20pt}{\sSanhaoFixed}[\vspace{15.6bp}]
     \renewcommand{\thechapter}{\Alph{chapter}} %
     \renewcommand{\thesection}{\Alph{chapter}.\arabic{section}}
     \renewcommand{\theequation}{\Alph{chapter}-\arabic{equation}}
@@ -808,7 +815,7 @@
     \setlength{\oldparindent}{\parindent} %
     \setlength{\parindent}{0pt} %
 }{\setlength{\parindent}{\oldparindent} \cleardoublepage} %
-% 知识产权与原创性声明
+% 使用授权与原创性声明
 \newcommand{\makestatement}{ %
 \begin{titlepage}
     \vspace*{-1.5mm}
@@ -816,7 +823,7 @@
         \begin{center}
             \renewcommand{\baselinestretch}{1.5}\fSong\sSihao\par
             {\bf 西北工业大学}\par
-            {\bf 学位论文知识产权声明书}\par
+            {\bf 学位论文使用授权声明}\par
         \end{center}
         \renewcommand{\baselinestretch}{2.22}\fSong\fontsize{10.6pt}{10.6pt}\selectfont
         {\qquad}本人完全了解学校有关保护知识产权的规定，即：研究生在校攻读学位期间论文工作的
@@ -851,8 +858,8 @@
             {\qquad}\mbox{秉承学校严谨的学风和优良的科学道德，本人郑重声明：所呈交的学位论文，是本}
             \mbox{人在导师的指导下进行研究工作所取得的成果。尽我所知，除文中已经注明引用的内容}
             \mbox{和致谢的地方外，本论文不包含任何其他个人或集体已经公开发表或撰写过的研究成果，}
-            \mbox{不包含本人或其他已申请学位或其他用途使用过的成果。对本文的研究做出重要贡献的}
-            \mbox{个人和集体，均已在文中以明确方式表明。}\par
+            \mbox{不包含本人或他人已申请学位或其他用途使用过的成果。对本文的研究做出重要贡献的}
+            \mbox{个人和集体，均已在文中以明确方式标明。}\par
             {\qquad}本人学位论文与资料若有不实，愿意承担一切相关的法律责任。\par
             \vspace*{1.5mm}
             \hspace*{21em}\hfill 学位论文作者签名{~:~}\underline{\qquad\qquad\quad}\par

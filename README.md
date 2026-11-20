@@ -72,6 +72,7 @@
 - [LaTeX-Template-For-NPU-Thesis](https://github.com/polossk/LaTeX-Template-For-NPU-Thesis)
 - [LaTeX-NewTemplate-For-NPU-undergraduate-Thesis](https://github.com/jialinlvcn/LaTeX-NewTemplate-For-NPU-undergraduate-Thesis)
 - [NWPU-Thesis-Template](https://github.com/lihanshu/NWPU-Thesis-Template)
+- [nwputhesis](https://github.com/1195343015/nwputhesis)
 
 ## 🔤 字体说明
 
