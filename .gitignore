@@ -1,0 +1,32 @@
+# LaTeX and latexmk auxiliary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.lof
+*.lot
+*.out
+*.toc
+*.thm
+*.xdv
+*.dvi
+*.synctex
+*.synctex.gz
+*.synctex(busy)
+*.synctex.gz(busy)
+
+# Glossaries, nomenclature, and indexes
+*.acn
+*.acr
+*.alg
+*.glo
+*.glg
+*.gls
+*.idx
+*.ilg
+*.ind
+*.nlo
+*.nls
+nputhesis-sample.ist

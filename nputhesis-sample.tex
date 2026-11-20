@@ -8,7 +8,7 @@
 \usepackage{metalogo} %
 \usepackage{siunitx} %
 \usepackage{amsmath} %
-\usepackage[acronym]{glossaries} %
+\usepackage[acronym,toc]{glossaries} %
 
 % -- 缩略语 --
 \input{chapters/glossary}
@@ -55,7 +55,6 @@
 
 \tableofcontents %
 % 以下清单按论文需要保留。
-\phantomsection\addcontentsline{toc}{chapter}{缩写表} %
 \printglossary[type=\acronymtype,title=缩写表] %
 \printglossary[title=术语表] %
 \listoffigures %

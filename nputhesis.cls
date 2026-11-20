@@ -49,11 +49,10 @@
         \@npu@replaceitwithstars\relax\else #1\fi} %
 % -- 页面布局 --
 \RequirePackage{geometry} %
+% 页眉盒与正文边界由 geometry 一次计算，页脚基线距纸边 17.5 mm。
 \geometry{a4paper, %
     left=2.5cm, right=2.5cm, top=2.54cm, bottom=2.54cm, %
-    headheight=0.53cm, headsep=0.51cm, footskip=0.79cm} %
-% 保持 geometry 算出的正文上边距，同时给“文武线”页眉留足高度。
-\setlength{\headheight}{25pt} % 页眉文字顶端在样例 PDF 中距纸张上边约 15 mm
+    headheight=25pt, headsep=\dimexpr10.4mm-25pt\relax, footskip=7.9mm} %
 \RequirePackage[ %
     unicode=true, %
     colorlinks=false, %
@@ -127,7 +126,7 @@
 \let\coverunderline\dlmu@underline %
 % 章节标题与目录层级
 \RequirePackage[sf]{titlesec} %
-\RequirePackage{titletoc} %
+\RequirePackage[rigidseps]{titletoc} %
 \setcounter{secnumdepth}{3} %
 \titleformat{\chapter}[hang]%
   {\normalfont\sSanhaoFixed\filcenter\fHei}%
@@ -154,9 +153,10 @@
 \titlespacing{\subsection}{0pt}{10bp}{0pt} % 段前半行，段后零行
 \titlespacing{\subsubsection}{0pt}{0.25em}{0pt} %
 \titlespacing{\paragraph}{0pt}{0.25em}{0pt} %
-\dottedcontents{section}[1.16cm]{}{1.8em}{5pt} %
-\dottedcontents{subsection}[2.00cm]{}{2.7em}{5pt} %
-\dottedcontents{subsubsection}[2.86cm]{}{3.4em}{5pt} %
+% 左边距包含编号盒宽度；编号起点逐级缩进两个字宽。
+\dottedcontents{section}[3.8em]{}{1.8em}{5pt} %
+\dottedcontents{subsection}[6.7em]{}{2.7em}{5pt} %
+\dottedcontents{subsubsection}[9.4em]{}{3.4em}{5pt} %
 \newcommand{\nwpu@chs@chaptercname}[1]{第 #1 章} %
 \newcommand{\nwpu@eng@chaptercname}[1]{Chapter #1} %
 \if@npu@lang@chs %
@@ -166,9 +166,7 @@
             .5pc]{.}\contentspage}[\vspace{0em}] %
 \else %
     \newlength{\contents@titlewidth} %
-    \newlength{\contents@appendixwidth} %
     \settowidth{\contents@titlewidth}{\sXiaosiFixed Chapter 000}%
-    \settowidth{\contents@appendixwidth}{\sXiaosiFixed Appendix M00}
     \titlecontents{chapter}[0pt]{\fSong\sXiaosiFixed}{\contentsmargin{0pt}\fSong\makebox[0pt %
         ][l]{\nwpu@eng@chaptercname{\thecontentslabel}}\hspace{%
             \contents@titlewidth}}{\contentsmargin{0pt}\fSong}{
@@ -228,9 +226,9 @@
 \RequirePackage{tabularx} %
 \RequirePackage{setspace} %
 \RequirePackage{ragged2e} %
-\DeclareCaptionFont{cWuhao}{\sWuhao} %
-\captionsetup[table]{labelfont=cWuhao, textfont=cWuhao, aboveskip=10pt, belowskip=0pt}
-\captionsetup[figure]{labelfont=cWuhao, textfont=cWuhao, aboveskip=10pt, belowskip=0pt}
+\DeclareCaptionFont{cWuhao}{\fontsize{10.5bp}{20bp}\selectfont} %
+\captionsetup[table]{font=cWuhao, aboveskip=10pt, belowskip=0pt}
+\captionsetup[figure]{font=cWuhao, aboveskip=10pt, belowskip=0pt}
 \captionsetup[subtable]{labelformat=simple, aboveskip=10pt, belowskip=-5pt}
 \captionsetup[subfigure]{labelformat=simple, aboveskip=10pt, belowskip=-5pt}
 \AtBeginEnvironment{tabular}{\sWuhao} %
@@ -287,6 +285,7 @@
 \lstset{ %
     basicstyle=\color[HTML]{000000}\small\ttfamily, %
     numbers=left, %
+    xleftmargin=1.5em, %
     numberstyle=\tiny, %
     numbersep=5pt, %
     tabsize=4, %
@@ -311,12 +310,13 @@
 \RequirePackage{algpseudocode} %
 \RequirePackage{appendix} %
 % 符号表采用单栏布局。
-\RequirePackage{nomencl} %
+\RequirePackage[intoc]{nomencl} %
 \RequirePackage{multicol} %
 \makenomenclature %
 \@ifundefined{chapter}{\def\npu@nomsec{section}}{\def\npu@nomsec{chapter}}
 \def\thenomenclature{%
     \csname\npu@nomsec\endcsname*{\nomname}
+    \markboth{\nomname}{\nomname}%
     \if@intoc\addcontentsline{toc}{\npu@nomsec}{\nomname}\fi
     \nompreamble %
     \list{}{\labelsep=15pt\labelwidth\nom@tempdim\leftmargin\labelwidth\advance
@@ -592,25 +592,27 @@
 \newcommand{\make@nwpu@eng@title}{ %
     \thispagestyle{empty} %
     \begin{titlepage} %
-        \linespread{1.2} \sXiaosan \par %
+        \rmfamily \linespread{1.2}\fontsize{15bp}{15bp}\selectfont \par %
         \vspace{1\baselineskip} %
         \begin{center} %
-            \sErhao \textbf{\nwpu@eng@title} \par %
-            \fSong \sXiaoer \vspace{3\baselineskip} %
-            \sXiaosan \textbf{By} \par %
-            \sXiaosan \textbf{\nwpu@eng@author} \par %
-            \sXiaosan \textbf{Under the Supervision of \nwpu@eng@advisorAcademicRank} \\
-            \sXiaosan \textbf{\nwpu@eng@advisor} \par %
-            \fSong \sSanhao \vspace{4\baselineskip} %
-            \sXiaosan A Dissertation Submitted to \\ %
-            \sXiaosan {\nwpu@eng@schoolname} \\ %
-            \fSong \sSanhao \vspace{1\baselineskip} %
+            {\fontsize{16bp}{16bp}\selectfont
+             {\fontsize{22bp}{22bp}\selectfont\bfseries Title:}\enspace
+             \ignorespaces\nwpu@eng@title\par} %
+            \vspace{3\baselineskip} %
+            \textbf{By} \\ %
+            \nwpu@eng@author \\ %
+            \textbf{Under the Supervision of \nwpu@eng@advisorAcademicRank} \\
+            \nwpu@eng@advisor \par %
+            \vspace{4\baselineskip} %
+            A Dissertation Submitted to \\ %
+            \nwpu@eng@schoolname \par %
+            \vspace{1\baselineskip} %
             In Partial Fulfillment of The Requirement \\
             For The Degree of \\ %
-            {\nwpu@eng@degree} of \textbf{\nwpu@eng@major}
-            \fSong \sXiaosan \par \vspace{3\baselineskip} %
-            \sXiaosan Xi'an, P.R. China \\ %
-            \sXiaosan {\nwpu@eng@date} %
+            {\nwpu@eng@degree} of \nwpu@eng@major \par %
+            \vspace{3\baselineskip} %
+            Xi'an, P.R. China \\ %
+            \nwpu@eng@date %
         \end{center} %
     \end{titlepage} \fSong \normalsize \newpage %
     \thispagestyle{empty} \cleardoublepage %
@@ -627,7 +629,7 @@
 \def\npu@replicate@aux#1{\csname npu@replicate@aux@#1\endcsname}
 \long\def\npu@replicate@aux@m#1Q#2#3{\npu@replicate@aux#1Q{#2#3}{#3}}
 \long\def\npu@replicate@aux@Q#1#2{#1}
-\newcommand{\npu@text}[1]{\relax\sDefault{#1}}
+\newcommand{\npu@text}[1]{\linespread{1}\sDefault{#1}}
 \newcommand{\expert}[3]{\npu@text{#1} & \npu@text{#2} & \npu@text{#3} \\ }
 \newcommand{\expertBlindReview}{\expert{全盲评阅}{无}{无}}
 \newcommand{\fullBlindReview}[1]{\npu@replicate{#1}{\expertBlindReview}}
@@ -642,6 +644,7 @@
         \linespread{1.2} \sXiaosan \par %
         \vspace{1\baselineskip} %
         \begin{center} %
+            \setlength{\tabcolsep}{0pt}%
             \fHei \sSanhao {学位论文评阅人和答辩委员会名单} \par
             #1\relax %
         \end{center} %
@@ -653,7 +656,7 @@
     \fHei \sSihao {学位论文评阅人名单} \par %
     \fSong \sSihao \vspace{0.3\baselineskip} %
     \let\oldarraystretch=\arraystretch %
-    \renewcommand{\arraystretch}{2.10} %
+    \renewcommand{\arraystretch}{2.0115} % 附件 3：评阅人表单行行高 25.25 磅
     \begin{tabularx}{15.27cm}{O{3.71cm}O{2.83cm}O{8.73cm}} %
         \centering
         \expert{\textbf{姓名}}{\textbf{职称}}{\textbf{工作单位}}
@@ -661,12 +664,10 @@
     \end{tabularx} %
     \renewcommand{\arraystretch}{\oldarraystretch}} %
 \newcommand{\committee}[2]{ %
-    \fSong \sDefault \vspace{\baselineskip} %
-    \fSong \sSihao \vspace{0.3\baselineskip} %
     \fHei \sSihao {答辩委员会名单} \par %
     \fSong \sSihao \vspace{0.3\baselineskip} %
     \let\oldarraystretch=\arraystretch %
-    \renewcommand{\arraystretch}{2.10} %
+    \renewcommand{\arraystretch}{2.0314} % 附件 3：答辩委员会表单行行高 25.50 磅
     \begin{tabularx}{15.44cm}{O{3.76cm}O{2.68cm}O{2.25cm}O{6.75cm}}
         \defenseDate{#1} \sDefault\textbf{答辩委员会} & %
         \expert{\textbf{姓名}}{\textbf{职称}}{\textbf{工作单位}}
@@ -697,15 +698,35 @@
     \vspace{1\baselineskip} \par %
     \noindent \textbf{Key Words:}}{} %
 % -- 目录页 --
+\newif\ifnpu@toc@appendix
+\def\npu@toc@anchorprefix#1.#2\@nil{#1}
+% 目录汇总附录，保留各附录在 PDF 中的独立书签和链接。
+\newcommand{\npu@toc@contentsline}[4]{%
+    \edef\npu@toc@anchor{\npu@toc@anchorprefix#4.\@nil}%
+    \ifdefstring{\npu@toc@anchor}{appendix}{%
+        \ifstrequal{#1}{chapter}{%
+            \ifnpu@toc@appendix\else
+                \npu@toc@appendixtrue
+                \npu@toc@originalline{chapter}%
+                    {\if@npu@lang@chs 附{\quad}录\else Appendices\fi}{#3}{#4}%
+            \fi}{}%
+    }{\npu@toc@originalline{#1}{#2}{#3}{#4}}}
 \let\old@toc\tableofcontents %
 \renewcommand{\tableofcontents}{ %
     \sXiaosiFixed\phantomsection %
     \bookmark[dest=\@currentHref, level=0]{\contentsname}
-    \old@toc \cleardoublepage %
+    \begingroup
+    \renewcommand{\@pnumwidth}{2.2em}%
+    \let\npu@toc@originalline\contentsline
+    \let\contentsline\npu@toc@contentsline
+    \old@toc
+    \endgroup
+    \cleardoublepage %
 } %
 \let\old@lof\listoffigures %
 \renewcommand{\listoffigures}{ %
     \sDefault %
+    \if@openright\cleardoublepage\else\clearpage\fi
     \phantomsection %
     \addcontentsline{toc}{chapter}{\listfigurename} %
     \begingroup %
@@ -717,6 +738,7 @@
 \let\old@lot\listoftables %
 \renewcommand{\listoftables}{ %
     \sDefault %
+    \if@openright\cleardoublepage\else\clearpage\fi
     \phantomsection %
     \addcontentsline{toc}{chapter}{\listtablename} %
     \begingroup %
@@ -728,11 +750,11 @@
 
 % -- 参考文献及附录处理 --
 \let\old@bibliography\bibliography %
+\apptocmd{\bibsection}{\addcontentsline{toc}{chapter}{\bibname}}{}%
+    {\ClassError{nputhesis}{Unable to add the bibliography to the contents}{}}%
 \renewcommand{\bibliography}[1]{ %
-    \phantomsection\addcontentsline{toc}{chapter}{参考文献} %
     \renewcommand{\baselinestretch}{1.0} %
-    \fontsize{12pt}{13pt}\selectfont %
-    \setlength{\bibsep}{0.5ex} %
+    \setlength{\bibsep}{0pt} %
     \sDefault \old@bibliography{#1} \cleardoublepage %
 } %
 % 修正附录中各级标题的 hyperref 引用类型。
@@ -754,7 +776,6 @@
 \newtoggle{inappendix}\togglefalse{inappendix} %
 \apptocmd{\appendix}{\toggletrue{inappendix}}{}{\errmessage{failed to patch}}
 \apptocmd{\subappendices}{\toggletrue{inappendix}}{}{\errmessage{failed to patch}}
-\appto\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
 \appto\listoffigures{\addtocontents{lof}{\protect\setcounter{tocdepth}{1}}}
 \appto\listoftables{\addtocontents{lot}{\protect\setcounter{tocdepth}{1}}}
 \newcommand{\nwpu@chs@appendixname}[1]{附录 #1} %
@@ -765,20 +786,7 @@
     \setcounter{chapter}{0} %
     \renewcommand{\nwpu@chs@chaptercname}{\nwpu@chs@appendixname}
     \renewcommand{\nwpu@eng@chaptercname}{\nwpu@eng@appendixname}
-    \if@npu@lang@chs %
-        \renewcommand{\appendixname}{附录} %
-        \titlecontents{chapter}[0pt]{\fSong\sXiaosiFixed}{%
-            \contentsmargin{0pt}\fSong\makebox[0pt][l]{%
-                \nwpu@chs@appendixname{\thecontentslabel}}\hspace{3.5em}}{%
-            \contentsmargin{0pt}\fSong}{\titlerule*[.5pc]{.}%
-            \contentspage}[\vspace{0em}] %
-    \else %
-        \titlecontents{chapter}[0pt]{\fSong\sXiaosiFixed}{%
-            \contentsmargin{0pt}\fSong\makebox[0pt][l]{%
-                \nwpu@eng@appendixname{\thecontentslabel}}\hspace{%
-                \contents@appendixwidth}}{\contentsmargin{0pt}\fSong}{%
-            \titlerule*[.5pc]{.}\contentspage}[\vspace{0em}]%
-    \fi %
+    \if@npu@lang@chs\renewcommand{\appendixname}{附录}\fi
     \titleformat{\chapter}[hang]{\normalfont\sSanhaoFixed\filcenter\sffamily\fHei}{%
         \sffamily\fHei\sSanhaoFixed{\appendixname}\rmfamily\sSanhaoFixed\bfseries\thechapter}{20pt}{\sSanhaoFixed}[\vspace{15.6bp}]
     \renewcommand{\thechapter}{\Alph{chapter}} %
@@ -802,7 +810,6 @@
     \phantomsection\chapter*{\nwpu@page@ack} %
     \markboth{\nwpu@page@ack}{\nwpu@page@ack} %
     \addcontentsline{toc}{chapter}{\nwpu@page@ack} %
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{2}} %
 }{\par \cleardoublepage} %
 % 在学期间科研成果
 \newenvironment{accomplishments}{ %
