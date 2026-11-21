@@ -595,9 +595,8 @@
         \rmfamily \linespread{1.2}\fontsize{15bp}{15bp}\selectfont \par %
         \vspace*{3\baselineskip} %
         \begin{center} %
-            {\fontsize{16bp}{16bp}\selectfont
-             {\fontsize{22bp}{22bp}\selectfont\bfseries Title:}\enspace
-             \ignorespaces\nwpu@eng@title\par} %
+            {\fontsize{22bp}{22bp}\selectfont\bfseries
+             Title:\enspace\ignorespaces\nwpu@eng@title\par} %
             \vspace{4\baselineskip} %
             \textbf{By} \\ %
             \nwpu@eng@author \\ %
