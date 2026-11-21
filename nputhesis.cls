@@ -554,13 +554,13 @@
     \settowidth{\chstitle@hwidthb}{\sYihao\nwpu@chs@doctitle}
     \begin{titlepage} %
         \renewcommand{\baselinestretch}{1.5} %
-        \fSong \sSanhao \par \vspace{1\baselineskip} %
+        \fSong \sSanhao \par \vspace*{12bp} % 页首段落合计约 48bp，接近指南的空行高度
         \begin{center} %
             \makebox[1.41667\chstitle@hwidtha][s]{\sSanhao\nwpu@chs@schoolname} \par
             \vspace*{5mm} %
             \makebox[1.41667\chstitle@hwidthb][s]{\sYihao\nwpu@chs@doctitle} \par
             \vspace*{5mm} %
-            \sSihao \par \vspace{6\baselineskip} %
+            \sSihao \par \vspace{4\baselineskip} %
             \fSong \sErhao %
             \begin{minipage}[t]{2cm} \hfill {题目：} \\ \end{minipage}
             \setbox123=\hbox{ %
