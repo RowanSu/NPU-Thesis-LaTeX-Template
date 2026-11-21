@@ -645,14 +645,14 @@
         \vspace*{\baselineskip} %
         \begin{center} %
             \setlength{\tabcolsep}{0pt}%
-            \fHei \sSanhaoFixed {学位论文评阅人和答辩委员会名单} \par\vspace{20bp} % 标题后空一行
+            {\linespread{1}\fHei \sSanhaoFixed 学位论文评阅人和答辩委员会名单\par}\vspace{20bp} % 标题后空一行
             #1\relax %
         \end{center} %
     \end{titlepage} \fSong \normalsize \newpage %
     \thispagestyle{empty} \cleardoublepage} %
 \newcommand{\reviewers}[1]{ %
     \par\vspace{10bp} % 段前 0.5 行，固定行距 20pt
-    {\fHei\fontsize{14bp}{20bp}\selectfont 学位论文评阅人名单\par} %
+    {\linespread{1}\fHei\fontsize{14bp}{20bp}\selectfont 学位论文评阅人名单\par} %
     \fSong \sSihao %
     \let\oldarraystretch=\arraystretch %
     \renewcommand{\arraystretch}{2.0115} % 附件 3：评阅人表单行行高 25.25 磅
@@ -664,7 +664,7 @@
     \renewcommand{\arraystretch}{\oldarraystretch}} %
 \newcommand{\committee}[2]{ %
     \par\vspace{10bp} % 段前 0.5 行，固定行距 20pt
-    {\fHei\fontsize{14bp}{20bp}\selectfont 答辩委员会名单\par} %
+    {\linespread{1}\fHei\fontsize{14bp}{20bp}\selectfont 答辩委员会名单\par} %
     \fSong \sSihao %
     \let\oldarraystretch=\arraystretch %
     \renewcommand{\arraystretch}{2.0314} % 附件 3：答辩委员会表单行行高 25.50 磅
