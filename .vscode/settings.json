@@ -30,6 +30,7 @@
     "*.acn", "*.acr", "*.alg",
     "*.glo", "*.gls", "*.glg", "*.ist",
     "*.nlo", "*.nls", "*.ilg",
-    "*.idx", "*.ind", "*.thm", "*.xdv"
+    "*.idx", "*.ind", "*.thm", "*.xdv",
+    "*.synctex.gz"
   ]
 }
