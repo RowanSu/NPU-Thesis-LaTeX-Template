@@ -855,7 +855,7 @@
         \end{minipage}\par
         {\qquad}~\par
         \vspace*{2.1mm}
-        \hbox to \hsize{\leaders\hbox to 1.1em{\hss—\hss}\hfill}\par
+        \hbox to \hsize{\leaders\hbox to \dimexpr\hsize/36\relax{\rule{1em}{0.4pt}\hss}\hfill}\par
         \vspace*{-13mm}
         {\qquad}~\par
         \vspace*{2mm}
@@ -876,7 +876,7 @@
             \vspace*{1.5mm}
             \hspace*{21em}\hfill 学位论文作者签名：\underline{\qquad\qquad\quad}\par
             \vspace*{2mm}
-            \hspace*{10em}\hfill {年\hspace*{1.5em}月\hspace*{1.5em}日}
+            \hspace*{10em}\hfill {年\hspace*{1.5em}月\hspace*{1.5em}日}\hspace*{1.5em}
         \end{minipage}
     \end{minipage}
 \end{titlepage}
