@@ -822,6 +822,7 @@
     \setlength{\parindent}{0pt} %
 }{\setlength{\parindent}{\oldparindent} \cleardoublepage} %
 % 使用授权与原创性声明
+\newlength{\npu@statement@signaturewidth}
 \newcommand{\makestatement}{ %
 \begin{titlepage}
     \vspace*{-1.5mm}
@@ -843,13 +844,18 @@
         至\hspace*{2.5em}年\hspace*{2.5em}月\hspace*{2.5em}日）。\par
         {\qquad}$\square$\hspace*{0.7em}公开论文。\par
         {\qquad}~\par
-        {\qquad}学位论文作者签名{~:~}\underline{\qquad\qquad\qquad}\hfill
-        指导教师签名{~:~}\underline{\qquad\qquad\qquad}\par
-        \hspace*{8em}{年\hspace*{1.5em}月\hspace*{1.5em}日}\hfill
-        \hspace*{12em}{年\hspace*{1.5em}月\hspace*{1.5em}日}\hspace*{1.5em}\par
+        \settowidth{\npu@statement@signaturewidth}{学位论文作者签名：\underline{\hspace{2cm}}}%
+        \noindent\begin{minipage}[t]{0.5\linewidth}
+            学位论文作者签名：\underline{\hspace{2cm}}\par
+            \makebox[\npu@statement@signaturewidth][r]{年\hspace*{1.5em}月\hspace*{1.5em}日}\par
+        \end{minipage}%
+        \begin{minipage}[t]{0.5\linewidth}
+            \raggedleft 指导教师签名：\underline{\hspace{2cm}}\par
+            年\hspace*{1.5em}月\hspace*{1.5em}日\par
+        \end{minipage}\par
         {\qquad}~\par
         \vspace*{2.1mm}
-        \hbox to \hsize{\leaders\hbox to 0.6em{\hss--\hss}\hfill} \par
+        \hbox to \hsize{\leaders\hbox to 1.1em{\hss—\hss}\hfill}\par
         \vspace*{-13mm}
         {\qquad}~\par
         \vspace*{2mm}
@@ -868,9 +874,9 @@
             \mbox{个人和集体，均已在文中以明确方式标明。}\par
             {\qquad}本人学位论文与资料若有不实，愿意承担一切相关的法律责任。\par
             \vspace*{1.5mm}
-            \hspace*{21em}\hfill 学位论文作者签名{~:~}\underline{\qquad\qquad\quad}\par
+            \hspace*{21em}\hfill 学位论文作者签名：\underline{\qquad\qquad\quad}\par
             \vspace*{2mm}
-            \hspace*{10em}\hfill {年\hspace*{1.5em}月\hspace*{1.5em}日}\hspace*{1.5em}
+            \hspace*{10em}\hfill {年\hspace*{1.5em}月\hspace*{1.5em}日}
         \end{minipage}
     \end{minipage}
 \end{titlepage}
