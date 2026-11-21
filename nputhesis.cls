@@ -593,25 +593,25 @@
     \thispagestyle{empty} %
     \begin{titlepage} %
         \rmfamily \linespread{1.2}\fontsize{15bp}{15bp}\selectfont \par %
-        \vspace{1\baselineskip} %
+        \vspace*{3\baselineskip} %
         \begin{center} %
             {\fontsize{16bp}{16bp}\selectfont
              {\fontsize{22bp}{22bp}\selectfont\bfseries Title:}\enspace
              \ignorespaces\nwpu@eng@title\par} %
-            \vspace{3\baselineskip} %
+            \vspace{4\baselineskip} %
             \textbf{By} \\ %
             \nwpu@eng@author \\ %
             \textbf{Under the Supervision of \nwpu@eng@advisorAcademicRank} \\
             \nwpu@eng@advisor \par %
-            \vspace{4\baselineskip} %
+            \vspace{5\baselineskip} %
             A Dissertation Submitted to \\ %
             \nwpu@eng@schoolname \par %
             \vspace{1\baselineskip} %
             In Partial Fulfillment of The Requirement \\
             For The Degree of \\ %
             {\nwpu@eng@degree} of \nwpu@eng@major \par %
-            \vspace{3\baselineskip} %
-            Xi'an, P.R. China \\ %
+            \vspace{7\baselineskip} %
+            Xi'an P. R. China \\ %
             \nwpu@eng@date %
         \end{center} %
     \end{titlepage} \fSong \normalsize \newpage %
@@ -642,19 +642,18 @@
     \thispagestyle{empty} %
     \begin{titlepage} %
         \linespread{1.2} \sXiaosan \par %
-        \vspace{1\baselineskip} %
+        \vspace*{\baselineskip} %
         \begin{center} %
             \setlength{\tabcolsep}{0pt}%
-            \fHei \sSanhao {学位论文评阅人和答辩委员会名单} \par
+            \fHei \sSanhaoFixed {学位论文评阅人和答辩委员会名单} \par\vspace{20bp} % 标题后空一行
             #1\relax %
         \end{center} %
     \end{titlepage} \fSong \normalsize \newpage %
     \thispagestyle{empty} \cleardoublepage} %
 \newcommand{\reviewers}[1]{ %
-    \fSong \sDefault \vspace{\baselineskip} %
-    \fSong \sSihao \vspace{0.3\baselineskip} %
-    \fHei \sSihao {学位论文评阅人名单} \par %
-    \fSong \sSihao \vspace{0.3\baselineskip} %
+    \par\vspace{10bp} % 段前 0.5 行，固定行距 20pt
+    {\fHei\fontsize{14bp}{20bp}\selectfont 学位论文评阅人名单\par} %
+    \fSong \sSihao %
     \let\oldarraystretch=\arraystretch %
     \renewcommand{\arraystretch}{2.0115} % 附件 3：评阅人表单行行高 25.25 磅
     \begin{tabularx}{15.27cm}{O{3.71cm}O{2.83cm}O{8.73cm}} %
@@ -664,8 +663,9 @@
     \end{tabularx} %
     \renewcommand{\arraystretch}{\oldarraystretch}} %
 \newcommand{\committee}[2]{ %
-    \fHei \sSihao {答辩委员会名单} \par %
-    \fSong \sSihao \vspace{0.3\baselineskip} %
+    \par\vspace{10bp} % 段前 0.5 行，固定行距 20pt
+    {\fHei\fontsize{14bp}{20bp}\selectfont 答辩委员会名单\par} %
+    \fSong \sSihao %
     \let\oldarraystretch=\arraystretch %
     \renewcommand{\arraystretch}{2.0314} % 附件 3：答辩委员会表单行行高 25.50 磅
     \begin{tabularx}{15.44cm}{O{3.76cm}O{2.68cm}O{2.25cm}O{6.75cm}}
@@ -696,7 +696,7 @@
 }{\vfill\sWuhao\noindent\nwpu@eng@funding\par\cleardoublepage}
 \newenvironment{engkeywords}{ %
     \vspace{1\baselineskip} \par %
-    \noindent \textbf{Key Words:}}{} %
+    \noindent \textbf{Keywords:}}{} %
 % -- 目录页 --
 \newif\ifnpu@toc@appendix
 \def\npu@toc@anchorprefix#1.#2\@nil{#1}
